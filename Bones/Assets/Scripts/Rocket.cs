@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour {
+public class Rocket : MonoBehaviour {
     
     [Header("Movement")]
     public float speed;
@@ -26,6 +26,10 @@ public class Bullet : MonoBehaviour {
     
     void FixedUpdate()
     {
+        /*
+            movement code credit to whatever demon possessed me. i will never understand a single line of this code again
+        */
+
         float angle = Vector3.SignedAngle(transform.right, player.transform.position - transform.position, Vector3.one);
         float tarRotVel = angle * deltaRotWeight;
 
