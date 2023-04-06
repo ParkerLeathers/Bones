@@ -40,7 +40,7 @@ public class Player : MonoBehaviour
         else if (Input.GetKeyDown("2"))
             crusheratorScript.Crush();
         else if(Input.GetKeyDown("3"))
-            Destroy(Instantiate(bombPrefab, new Vector3(Random.Range(-6.4f, 6.4f), 15. -2), Quaternion.identity), 60);
+            Destroy(Instantiate(bombPrefab, new Vector3(Random.Range(-6.4f, 6.4f), 15, -2), Quaternion.identity), 60);
 
         if (Input.GetKeyDown(KeyCode.J))
             SceneManager.LoadScene("Celeste");
