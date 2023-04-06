@@ -5,6 +5,9 @@ TagManager:
   serializedVersion: 2
   tags:
   - Projectile
+  - Boss
+  - Crusherator
+  - FightBox
   layers:
   - Default
   - TransparentFX
