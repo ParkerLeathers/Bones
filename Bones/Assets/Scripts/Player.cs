@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -40,6 +41,9 @@ public class Player : MonoBehaviour
             crusheratorScript.Crush();
         else if(Input.GetKeyDown("3"))
             Destroy(Instantiate(bombPrefab, new Vector2(Random.Range(-6.4f, 6.4f), 15), Quaternion.identity), 60);
+
+        if (Input.GetKeyDown(KeyCode.J))
+            SceneManager.LoadScene("Celeste");
     }
     void FixedUpdate() {
         rb.MovePosition(transform.position + new Vector3(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * Time.fixedDeltaTime * speed);

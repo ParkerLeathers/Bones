@@ -8,4 +8,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/Celeste.unity
+    guid: 22f5a28bfa42c1a4ab571f355451a176
   m_configObjects: {}
