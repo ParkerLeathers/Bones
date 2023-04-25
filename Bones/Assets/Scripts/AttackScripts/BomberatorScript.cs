@@ -33,7 +33,7 @@ public class BomberatorScript : MonoBehaviour
             float initTime = Time.realtimeSinceStartup;
             while (Time.realtimeSinceStartup - initTime < seconds) {
                 yield return new WaitForSeconds(inverseSpeed);
-                Destroy(Instantiate(bombPrefab, new Vector3(Random.Range(-6.4f, 6.4f), 6, -2), Quaternion.identity), 4);
+                Destroy(Instantiate(bombPrefab, new Vector3(Random.Range(-6.4f, 6.4f), 6, -2), Quaternion.identity), 4); //good spot for data locality change
             }
         }
     }

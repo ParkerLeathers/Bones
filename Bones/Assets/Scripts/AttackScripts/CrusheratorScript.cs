@@ -20,6 +20,7 @@ public class CrusheratorScript : MonoBehaviour
     [SerializeField]
     private GameObject fightBox;
 
+    //fun fact i did this state implementation before even seeing the enum implementation on the gameprogrammingpatterns site
     private enum State {
         Crushing,
         Uncrushing,
@@ -35,6 +36,7 @@ public class CrusheratorScript : MonoBehaviour
     
     void Update()
     {
+        //i even did the switch case
         switch (state) {
             case State.Crushing:
                 CrushingUpdate();
