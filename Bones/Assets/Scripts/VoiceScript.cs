@@ -12,6 +12,7 @@ public class VoiceScript : MonoBehaviour
     }
 
     public void PlaySound(AudioClip ac) {
+        audioSource.Stop();
         audioSource.PlayOneShot(ac);
     }
 

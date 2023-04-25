@@ -7,6 +7,9 @@ using UnityEngine.UI;
 public class CutsceneScript : MonoBehaviour
 {
 
+    //i am a goat for coming up with this godly cutscene organization
+    //and an egomaniac as well i guess
+
     public enum Speaker {
         Bones,
         SkullKing

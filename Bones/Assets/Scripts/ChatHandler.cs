@@ -6,12 +6,11 @@ using UnityEngine.UI;
 public class ChatHandler : MonoBehaviour
 {
     [Header("Text")]
-    private Queue<char> textQueue;
+    private Queue<char> textQueue = new Queue<char>();
     private Text textCmp;
 
-    void Start()
+    void Awake()
     {
-        textQueue = new Queue<char>();
         textCmp = GetComponent<Text>();
     }
 
