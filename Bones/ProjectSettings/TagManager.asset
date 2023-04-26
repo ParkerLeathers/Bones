@@ -8,6 +8,7 @@ TagManager:
   - Boss
   - Crusherator
   - FightBox
+  - Wall
   layers:
   - Default
   - TransparentFX
