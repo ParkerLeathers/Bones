@@ -8,17 +8,15 @@ public abstract class CelestePlayerStateWall : CelestePlayerState {
     [Header("Components")]
     protected Rigidbody2D rb;
 
-    int xSpeed = 5;
-    int ySpeed = 5;
-    int speed = 5;
+    //constants
+    readonly int JUMP_X_FORCE = 5;
+    readonly int JUMP_Y_FORCE = 5;
 
     //climb state property
     protected bool canClimb = true;
     protected bool helpless = false;
 
     protected GameObject wall;
-
-    protected bool left;
 
     public CelestePlayerStateWall(CelestePlayerStateMachine stateMachine) : base(stateMachine) { }
 
@@ -27,15 +25,20 @@ public abstract class CelestePlayerStateWall : CelestePlayerState {
     public override void BeginState() {
         InitProperties();
 
-        rb = stateMachine.player.GetComponent<Rigidbody2D>();
+        rb = stateMachine.player.rb;
         rb.gravityScale = 0;
 
         rb.velocity = Vector2.zero;
 
         wall = stateMachine.player.GetWall();
-        left = false;
-        if (wall.transform.position.x < rb.position.x)
-            left = true;
+        if (wall.transform.position.x < rb.position.x) {
+            stateMachine.player.left = true;
+            stateMachine.player.sr.flipX = true;
+        }
+        else {
+            stateMachine.player.left = false;
+            stateMachine.player.sr.flipX = false;
+        }
 
         BeginStateWall();
     }
@@ -66,9 +69,9 @@ public abstract class CelestePlayerStateWall : CelestePlayerState {
     }
 
     private bool Kick() {
-        if (left ? Input.GetKey(KeyCode.D) : Input.GetKey(KeyCode.A)) {
+        if (stateMachine.player.left ? Input.GetKey(KeyCode.D) : Input.GetKey(KeyCode.A)) {
             rb.velocity = new Vector2(0, 0f);
-            rb.AddForce(new Vector2(left ? xSpeed : -xSpeed, ySpeed), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(stateMachine.player.left ? JUMP_X_FORCE : -JUMP_X_FORCE, JUMP_Y_FORCE), ForceMode2D.Impulse);
             stateMachine.ChangeState(helpless ? stateMachine.stateHelpless : stateMachine.stateJump);
             return true;
         }

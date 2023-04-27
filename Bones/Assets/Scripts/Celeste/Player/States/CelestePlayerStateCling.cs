@@ -6,6 +6,7 @@ public class CelestePlayerStateCling : CelestePlayerStateWall {
     public CelestePlayerStateCling(CelestePlayerStateMachine stateMachine) : base(stateMachine) {}
 
     public override void InitProperties() {
+        stateMachine.player.asc.ChangeAnimationState("Cling");
         canClimb = true;
         helpless = false;
     }

@@ -7,10 +7,13 @@ public abstract class CelestePlayerStateAerial : CelestePlayerState
 
 
     [Header("Components")]
-    private Collider2D collider;
     private Rigidbody2D rb;
 
-    int speed = 5;
+
+    [Header("Constants")]
+    private readonly float X_SPEED = 5f;
+    private readonly float MAX_ANIMATION_SPEED = 5f;
+    private readonly float ANIMATION_MODIFIER = 1f;
 
 
     //grounded state property
@@ -23,9 +26,8 @@ public abstract class CelestePlayerStateAerial : CelestePlayerState
 
     public override void BeginState() {
         InitProperties();
-        
-        collider = stateMachine.player.GetComponent<Collider2D>();
-        rb = stateMachine.player.GetComponent<Rigidbody2D>();
+
+        rb = stateMachine.player.rb;
         rb.gravityScale = stateMachine.player.gravityScale;
 
         BeginStateAerial();
@@ -35,9 +37,14 @@ public abstract class CelestePlayerStateAerial : CelestePlayerState
 
         if (ExitChecks()) return;
 
-        Debug.Log(rb.velocity);
-        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
-        Debug.Log(rb.velocity);
+        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * X_SPEED, rb.velocity.y);
+
+        stateMachine.player.asc.ChangeAnimationState("Aerial", System.Math.Abs(rb.velocity.y) * ANIMATION_MODIFIER >= MAX_ANIMATION_SPEED ? MAX_ANIMATION_SPEED : System.Math.Abs(rb.velocity.y) * ANIMATION_MODIFIER);
+
+        if (rb.velocity.x < 0)
+            stateMachine.player.sr.flipX = true;
+        else if (rb.velocity.x > 0)
+            stateMachine.player.sr.flipX = false;
 
         UpdateStateAerial();
     }

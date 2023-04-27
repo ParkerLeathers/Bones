@@ -13,6 +13,7 @@ public class CelestePlayerStateMachine : MonoBehaviour
     public CelestePlayerState playerState;
 
     public CelestePlayerStateIdle stateIdle { get; private set; }
+    public CelestePlayerStateWalking stateWalking { get; private set; }
     public CelestePlayerStateJump stateJump { get; private set; }
     public CelestePlayerStateHelpless stateHelpless { get; private set; }
     public CelestePlayerStateDash stateDash { get; private set; }
@@ -29,6 +30,7 @@ public class CelestePlayerStateMachine : MonoBehaviour
     void Start()
     {
         stateIdle = new CelestePlayerStateIdle(this);
+        stateWalking = new CelestePlayerStateWalking(this);
         stateJump = new CelestePlayerStateJump(this);
         stateHelpless = new CelestePlayerStateHelpless(this);
         stateDash = new CelestePlayerStateDash(this);

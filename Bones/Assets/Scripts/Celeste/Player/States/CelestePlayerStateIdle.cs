@@ -11,6 +11,7 @@ public class CelestePlayerStateIdle : CelestePlayerStateGrounded {
 
     public override void InitProperties() {
         canJump = true;
+        stateMachine.player.asc.ChangeAnimationState("Idle");
     }
 
     public override void BeginStateGround() {
@@ -19,6 +20,7 @@ public class CelestePlayerStateIdle : CelestePlayerStateGrounded {
 
 
     public override void UpdateStateGround() {
-
+        if (rb.velocity.x != 0)
+            stateMachine.ChangeState(stateMachine.stateWalking);
     }
 }

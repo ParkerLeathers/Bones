@@ -19,7 +19,8 @@ public class CelestePlayerStateDash : CelestePlayerState {
         rb = stateMachine.player.GetComponent<Rigidbody2D>();
         rb.velocity = Vector2.zero;
         rb.gravityScale = 0;
-        direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
+        direction = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")).normalized;
+        stateMachine.player.sms.Swap("Dash");
     }
 
     public override void UpdateState() {

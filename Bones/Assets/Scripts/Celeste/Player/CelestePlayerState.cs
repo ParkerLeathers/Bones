@@ -20,6 +20,7 @@ public abstract class CelestePlayerState
 
     public void BeginStateBase() {
         timer = 0;
+        stateMachine.player.sms.Swap();
         BeginState();
     }
 

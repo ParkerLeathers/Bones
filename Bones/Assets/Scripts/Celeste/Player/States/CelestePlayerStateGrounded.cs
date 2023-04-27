@@ -7,14 +7,17 @@ public abstract class CelestePlayerStateGrounded : CelestePlayerState
     
 
     [Header("Components")]
-    private Rigidbody2D rb;
+    protected Rigidbody2D rb;
 
-    int speed = 5;
+    [Header("Constants")]
+    private readonly int JUMP_FORCE = 5;
+    private readonly int SPEED = 5;
 
     //grounded state property
     protected bool canJump = true;
 
     protected GameObject ground;
+
 
     public CelestePlayerStateGrounded(CelestePlayerStateMachine stateMachine) : base(stateMachine) {}
 
@@ -33,8 +36,14 @@ public abstract class CelestePlayerStateGrounded : CelestePlayerState
         ground = stateMachine.player.GetGround();
 
         if (ExitChecks()) return;
-        
-        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * speed, rb.velocity.y);
+
+        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * SPEED, rb.velocity.y);
+
+        if (rb.velocity.x < 0)
+            stateMachine.player.sr.flipX = true;
+        else if (rb.velocity.x > 0)
+            stateMachine.player.sr.flipX = false;
+
         UpdateStateGround();
     }
 
@@ -57,7 +66,7 @@ public abstract class CelestePlayerStateGrounded : CelestePlayerState
     private bool Jump() {
         if (Input.GetKey(KeyCode.W)) {
             rb.velocity = new Vector2(rb.velocity.x, 0f);
-            rb.AddForce(new Vector2(0, speed), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(0, JUMP_FORCE), ForceMode2D.Impulse);
             stateMachine.ChangeState(stateMachine.stateJump);
             return true;
         }

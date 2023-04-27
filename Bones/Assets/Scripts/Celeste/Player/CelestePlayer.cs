@@ -8,15 +8,25 @@ public class CelestePlayer : MonoBehaviour {
     public float speed = 5f;
 
     [Header("Components")]
-    private Rigidbody2D rb;
-    private Collider2D c2;
+    [HideInInspector] public Rigidbody2D rb;
+    [HideInInspector] public Collider2D c2;
+    [HideInInspector] public AnimationStateChanger asc;
+    [HideInInspector] public SpriteMaterialSwapper sms;
+    [HideInInspector] public SpriteRenderer sr;
 
+    [HideInInspector]
     public float gravityScale;
+    [HideInInspector]
+    public bool left;
     
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
         c2 = GetComponent<Collider2D>();
+        asc = GetComponent<AnimationStateChanger>();
+        sms = GetComponent<SpriteMaterialSwapper>();
+        sr = GetComponent<SpriteRenderer>();
         gravityScale = rb.gravityScale;
+        left = false;
     }
 
 
