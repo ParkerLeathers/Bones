@@ -9,6 +9,7 @@ TagManager:
   - Crusherator
   - FightBox
   - Wall
+  - Platform
   layers:
   - Default
   - TransparentFX

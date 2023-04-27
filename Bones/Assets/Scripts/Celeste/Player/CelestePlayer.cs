@@ -61,14 +61,14 @@ public class CelestePlayer : MonoBehaviour {
     public GameObject GetGround() {
         GameObject[] hits = System.Array.ConvertAll(Physics2D.RaycastAll(transform.position, Vector2.down, c2.bounds.extents.y + 0.05f), item => item.collider.gameObject);
         foreach(GameObject i in hits)
-            if (i.CompareTag("Wall"))
+            if (i.CompareTag("Wall") || i.CompareTag("Platform"))
                 return i;
 
         //a vector from the bottom left of the collider to the (bottom right - 0.05 y). demon code
         Vector2 sweep = new Vector2(c2.bounds.center.x + c2.bounds.extents.x, c2.bounds.center.y - c2.bounds.extents.y - 0.05f) - (Vector2) c2.bounds.min;
         hits = System.Array.ConvertAll(Physics2D.RaycastAll(c2.bounds.min, sweep, sweep.magnitude), item => item.collider.gameObject);
         foreach (GameObject i in hits)
-            if (i.CompareTag("Wall"))
+            if (i.CompareTag("Wall") || i.CompareTag("Platform"))
                 return i;
         return null;
     }
