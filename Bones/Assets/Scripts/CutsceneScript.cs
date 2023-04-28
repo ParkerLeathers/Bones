@@ -49,7 +49,8 @@ public class CutsceneScript : MonoBehaviour
             while (lineQueue.Count > 0) {
                 while (!InputManager.GetKey(InputManager.InputName.Button1))
                     yield return null;
-                
+
+
                 VoiceLine line = lineQueue.Dequeue();
                 speakersScript[(int) line.speaker].StartText(line.text);
                 if (line.clip != null)
