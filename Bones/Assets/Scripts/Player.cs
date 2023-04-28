@@ -34,19 +34,10 @@ public class Player : MonoBehaviour
 
     private void Update() {
 
-        /*
-         * Inputs
-        */
-        if (Input.GetKeyDown("1"))
-            crusheratorScript.MonoCrush();
-        else if (Input.GetKeyDown("2"))
-            crusheratorScript.Crush();
-        else if (Input.GetKeyDown("3"))
-            bomberatorScript.Bombard(2f);
-
         if (Input.GetKeyDown(KeyCode.J))
             SceneManager.LoadScene("Celeste");
     }
+
     void FixedUpdate() {
         //movement
         if(!UniversalData.fakeDeath) //if you havent died yet (fallen for me trap)

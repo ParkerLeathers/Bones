@@ -69,7 +69,7 @@ public abstract class CelestePlayerStateWall : CelestePlayerState {
     }
 
     private bool Kick() {
-        if (stateMachine.player.left ? Input.GetKey(KeyCode.D) : Input.GetKey(KeyCode.A)) {
+        if (stateMachine.player.left ? InputManager.GetKey(InputManager.InputName.Right) : InputManager.GetKey(InputManager.InputName.Left)) {
             rb.velocity = new Vector2(0, 0f);
             rb.AddForce(new Vector2(stateMachine.player.left ? JUMP_X_FORCE : -JUMP_X_FORCE, JUMP_Y_FORCE), ForceMode2D.Impulse);
             stateMachine.ChangeState(helpless ? stateMachine.stateHelpless : stateMachine.stateJump);

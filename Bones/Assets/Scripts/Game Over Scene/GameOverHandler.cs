@@ -43,7 +43,7 @@ public class GameOverHandler : MonoBehaviour
 
         IEnumerator GameOverRoutine() {
             yield return new WaitForSeconds(4f); //wait 4 seconds
-            while (!Input.GetKeyDown(KeyCode.Z)) //wait for Z press
+            while (!InputManager.GetKey(InputManager.InputName.Button1)) //wait for Z press
                 yield return null;
             SceneManager.LoadScene("Undertale");
         }

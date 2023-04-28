@@ -64,7 +64,7 @@ public abstract class CelestePlayerStateGrounded : CelestePlayerState
     }
 
     private bool Jump() {
-        if (Input.GetKey(KeyCode.W)) {
+        if (InputManager.GetKey(InputManager.InputName.Button3)) {
             rb.velocity = new Vector2(rb.velocity.x, 0f);
             rb.AddForce(new Vector2(0, JUMP_FORCE), ForceMode2D.Impulse);
             stateMachine.ChangeState(stateMachine.stateJump);

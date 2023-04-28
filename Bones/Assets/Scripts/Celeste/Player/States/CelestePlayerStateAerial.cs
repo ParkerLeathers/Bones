@@ -75,8 +75,7 @@ public abstract class CelestePlayerStateAerial : CelestePlayerState
     }
 
     private bool Dash() {
-        //do impulse jump
-        if (Input.GetKey(KeyCode.Space)) {
+        if (InputManager.GetKey(InputManager.InputName.Button2)) {
             stateMachine.ChangeState(stateMachine.stateDash);
             return true;
         }

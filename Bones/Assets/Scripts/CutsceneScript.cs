@@ -47,7 +47,7 @@ public class CutsceneScript : MonoBehaviour
 
         IEnumerator CutsceneRoutine() {
             while (lineQueue.Count > 0) {
-                while (!Input.GetKeyDown(KeyCode.Z))
+                while (!InputManager.GetKey(InputManager.InputName.Button1))
                     yield return null;
                 
                 VoiceLine line = lineQueue.Dequeue();
@@ -55,7 +55,7 @@ public class CutsceneScript : MonoBehaviour
                 if (line.clip != null)
                     vs.PlaySound(line.clip);
 
-                while (Input.GetKeyDown(KeyCode.Z))
+                while (InputManager.GetKey(InputManager.InputName.Button1))
                     yield return null;
             }
         }
