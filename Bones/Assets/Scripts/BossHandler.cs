@@ -10,10 +10,13 @@ public class BossHandler : MonoBehaviour
 
     private Vector2 target;
     private float distance;
-    Rigidbody2D rb;
+    private Rigidbody2D rb;
+
+    public bool done = false;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
+        target = transform.position;
     }
 
     void Start() {
@@ -22,6 +25,10 @@ public class BossHandler : MonoBehaviour
 
     void Update()
     {
+        if (Vector2.Distance(transform.position, target) < 0.001)
+            done = true;
+        else
+            done = false;
         transform.position = Vector2.MoveTowards(transform.position, target, distance * Time.deltaTime / inverseSpeed);
     }
 
