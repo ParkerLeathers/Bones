@@ -34,6 +34,9 @@ public class CelesteBossHandler : MonoBehaviour
 
     void Update()
     {
+        if (started)
+            return;
+
         if (points.Count == 0)
             loadQueue();
         if (points.Count > 0 && bossHandler.done)
