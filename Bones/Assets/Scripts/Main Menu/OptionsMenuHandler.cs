@@ -41,11 +41,13 @@ public class OptionsMenuHandler : MonoBehaviour
 
         resolutions = Screen.resolutions;
         bool resolutionHit = false;
-        for (int i = 0; i < resolutions.Length; i++) {
-            if (Mathf.Abs((float)resolutions[i].width / resolutions[i].height - (16f / 9)) < 0.001) {//sorry its just easier for me to only allow 16:9 :(
-                resolution.options.Add(new Dropdown.OptionData(resolutions[i].width + "x" + resolutions[i].height));
+        int i = 0;
+        foreach (Resolution r in resolutions) {
+            if (Mathf.Abs((float) r.width / r.height - (16f / 9)) < 0.001) {//sorry its just easier for me to only allow 16:9 :(
+                i++;
+                resolution.options.Add(new Dropdown.OptionData(r.width + "x" + r.height));
 
-                if(resolutions[i].width == Screen.currentResolution.width && resolutions[i].height == Screen.currentResolution.height) {
+                if(r.width == Screen.currentResolution.width && r.height == Screen.currentResolution.height) {
                     resolution.value = i;
                     resolutionHit = true;
                 }
