@@ -1987,6 +1987,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inverseSpeed: 3
+  done: 0
+  paused: 0
 --- !u!114 &1100110634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1999,6 +2001,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 58c77807bb8f25e4eb77ca3b9f23c9ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 1683848185}
+  MAX_DISTANCE: 5
   wayPointObjs:
   - {fileID: 199087823}
   - {fileID: 1037786065}

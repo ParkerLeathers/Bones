@@ -13,6 +13,7 @@ public class BossHandler : MonoBehaviour
     private Rigidbody2D rb;
 
     public bool done = false;
+    public bool paused = false;
     void Awake()
     {
         rb = GetComponent<Rigidbody2D>();
@@ -29,7 +30,16 @@ public class BossHandler : MonoBehaviour
             done = true;
         else
             done = false;
-        transform.position = Vector2.MoveTowards(transform.position, target, distance * Time.deltaTime / inverseSpeed);
+        if(!paused)
+            transform.position = Vector2.MoveTowards(transform.position, target, distance * Time.deltaTime / inverseSpeed);
+    }
+
+    public void Pause() {
+        paused = true;
+    }
+
+    public void UnPause() {
+        paused = false;
     }
 
     public void MoveTo(Vector2 pos) {

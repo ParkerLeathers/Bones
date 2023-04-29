@@ -4,6 +4,12 @@ using UnityEngine;
 
 public class CelesteBossHandler : MonoBehaviour
 {
+    [Header("GameObjects")]
+    [SerializeField] private GameObject player;
+
+    [Header("Stats")]
+    [SerializeField] private float MAX_DISTANCE;
+
     [Header("Components")]
     private BossHandler bossHandler;
 
@@ -33,6 +39,10 @@ public class CelesteBossHandler : MonoBehaviour
         if (points.Count > 0 && bossHandler.done)
             Next();
 
+        if (Vector2.Distance(transform.position, player.transform.position) > MAX_DISTANCE)
+            bossHandler.Pause();
+        else
+            bossHandler.UnPause();
     }
 
     public void StartMoving() {
