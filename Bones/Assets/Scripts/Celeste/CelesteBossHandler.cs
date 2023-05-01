@@ -22,11 +22,11 @@ public class CelesteBossHandler : MonoBehaviour
     void Awake()
     {
         bossHandler = GetComponent<BossHandler>();
-        loadQueue();
+        LoadQueue();
         StartMoving();
     }
 
-    private void loadQueue() {
+    private void LoadQueue() {
 
         foreach (GameObject i in wayPointObjs)
             points.Enqueue(i.transform.position);
@@ -38,7 +38,7 @@ public class CelesteBossHandler : MonoBehaviour
             return;
 
         if (points.Count == 0)
-            loadQueue();
+            LoadQueue();
         if (points.Count > 0 && bossHandler.done)
             Next();
 
