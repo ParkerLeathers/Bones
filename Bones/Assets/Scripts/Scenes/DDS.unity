@@ -280,7 +280,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccf1fa499bf7921438c6820629c265ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wayPointObjs: []
+  wayPointObjs:
+  - {fileID: 110962712}
 --- !u!212 &102358531
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -380,6 +381,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wayPointObjs:
   - {fileID: 102358528}
+  - {fileID: 1209777426}
 --- !u!212 &110962715
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1281,7 +1283,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccf1fa499bf7921438c6820629c265ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wayPointObjs: []
+  wayPointObjs:
+  - {fileID: 850486793}
 --- !u!212 &752772387
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1684,6 +1687,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wayPointObjs:
   - {fileID: 1977966767}
+  - {fileID: 850486793}
 --- !u!212 &1005053374
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2176,6 +2180,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   wayPointObjs:
   - {fileID: 110962712}
+  - {fileID: 850486793}
 --- !u!212 &1209777429
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -2593,6 +2598,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   inverseSpeed: 0
+  speed: 3
+  setSpeed: 1
   done: 0
   paused: 0
 --- !u!61 &1691651607
@@ -2679,7 +2686,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccf1fa499bf7921438c6820629c265ac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  wayPointObjs: []
+  wayPointObjs:
+  - {fileID: 1005053371}
 --- !u!212 &1977966770
 SpriteRenderer:
   m_ObjectHideFlags: 0
