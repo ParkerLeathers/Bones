@@ -1,17 +1,22 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class DDSBossHandler : MonoBehaviour
 {
 
     [Header("GameObjects")]
     [SerializeField] private GameObject point;
+    [SerializeField] private Text text;
 
     private GameObject previousPoint;
 
     [Header("Components")]
     private BossHandler bossHandler;
+
+    [Header("Stats")]
+    [SerializeField] private float health = 100;
 
     void Awake() 
     {
@@ -22,6 +27,10 @@ public class DDSBossHandler : MonoBehaviour
     
     void Update()
     {
+        Movement();
+    }
+
+    private void Movement() {
         if (bossHandler.done) {
             DDSWaypoint pointScript = point.GetComponent<DDSWaypoint>();
             GameObject[] wayPointObjs = pointScript.wayPointObjs;
@@ -40,6 +49,39 @@ public class DDSBossHandler : MonoBehaviour
                 point = potentialPoints[Random.Range(0, potLoc)];
             }
             bossHandler.MoveTo(point.transform.position);
+        }
+    }
+
+    private void Death() {
+        //todo IMPLEMENT
+        Debug.Log("big money ukilled him");
+    }
+
+    private void UpdateHealth() {
+        text.text = ""+(int) health;
+        if (health < 1) //i do less than 1 so that way the display never says "0" despite having like 0.5
+            Death();
+    }
+
+    private void TakeDamage(float dmg) {
+        health -= dmg;
+        UpdateHealth();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other == null || other.gameObject == null)
+            return;
+
+        switch (other.tag) {
+            case "Projectile": //death
+                BulletHandler bh = other.GetComponent<BulletHandler>();
+                if (bh != null && bh.ally) {
+                    TakeDamage(bh.damage);
+                    Destroy(other.gameObject); //heads up make sure u dont destroy the skull king before this can run
+                }
+                break;
+            default:
+                break;
         }
     }
 }

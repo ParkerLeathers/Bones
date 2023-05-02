@@ -14,7 +14,7 @@ public abstract class WeaponHandler : MonoBehaviour
     // dont make these 0
     private static readonly float DAMAGE_RANGE = 1.5f;
     private static readonly float RATE_RANGE = 0.2f;
-    private static readonly float SPREAD_RANGE = 10f;
+    private static readonly float SPREAD_RANGE = 5f;
     private static readonly float SPEED_RANGE = 1.5f;
 
     private static readonly float DRAW_DISTANCE = 0.05f;
@@ -70,7 +70,7 @@ public abstract class WeaponHandler : MonoBehaviour
             damageMultiplier = 0.5f / DAMAGE_RANGE,
             rateOffset = 0.3f,
             rateMultiplier = 1,
-            spreadOffset = 20,
+            spreadOffset = 15,
             spreadMultiplier = 2,
             speedOffset = 6,
             speedMultiplier = 2
@@ -81,9 +81,9 @@ public abstract class WeaponHandler : MonoBehaviour
             damageMultiplier = 1 / DAMAGE_RANGE,
             rateOffset = 0.1f,
             rateMultiplier = 0.25f,
-            spreadOffset = 20,
+            spreadOffset = 15,
             spreadMultiplier = 1,
-            speedOffset = 2,
+            speedOffset = 4,
             speedMultiplier = 1 / SPEED_RANGE
         } }
     };
@@ -101,6 +101,7 @@ public abstract class WeaponHandler : MonoBehaviour
 
     protected Vector2 target;
     protected bool fire;
+    protected bool ally;
 
     private void UpdateTexture() {
         sr.sprite = Resources.Load<Sprite>(guns[gunType].path);
@@ -161,6 +162,7 @@ public abstract class WeaponHandler : MonoBehaviour
         BulletHandler bulletHandler = bullet.GetComponent<BulletHandler>();
         bulletHandler.speed = speed;
         bulletHandler.damage = damage;
+        bulletHandler.ally = ally;
         state = State.ReloadOut;
     }
 
