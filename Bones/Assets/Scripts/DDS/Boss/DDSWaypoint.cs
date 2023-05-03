@@ -19,8 +19,8 @@ public class DDSWaypoint : MonoBehaviour
             Vector2 up = Vector2.up / 6;
             Vector2 right = Vector2.right / 6;
             Debug.DrawLine(pos1, pos2, Color.white, 0.01f);
-            Debug.DrawLine( pos1 + ( pos2 - pos1) * 5 / 6 + up + right, pos1 + (pos2 - pos1) * 5 / 6 - up - right);
-            Debug.DrawLine(pos1 + (pos2 - pos1) * 5 / 6 + up - right, pos1 + (pos2 - pos1) * 5 / 6 - up + right);
+            Debug.DrawLine( pos1 + ( pos2 - pos1).normalized + up + right, pos1 + (pos2 - pos1).normalized - up - right);
+            Debug.DrawLine(pos1 + (pos2 - pos1).normalized + up - right, pos1 + (pos2 - pos1).normalized - up + right);
             //Debug.DrawLine((Vector2)i.transform.position - Vector2.up/3 - Vector2.right/3 - (Vector2) transform.position / 6, (Vector2)i.transform.position + Vector2.up/3 + Vector2.right/3 -(Vector2)transform.position / 6);
         }
     }

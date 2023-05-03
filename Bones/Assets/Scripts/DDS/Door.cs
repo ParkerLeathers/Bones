@@ -10,8 +10,8 @@ public class Door : MonoBehaviour
     private static readonly float RADIUS = 1.5f;
 
     [Header("GameObjects")]
-    [SerializeField] private GameObject player;
-    [SerializeField] private GameObject boss;
+    private GameObject player;
+    private GameObject boss;
     private Transform door1;
     private Transform door2;
     
@@ -31,6 +31,8 @@ public class Door : MonoBehaviour
         Transform[] children = GetComponentsInChildren<Transform>();
         door1 = children[1];
         door2 = children[2];
+        player = GameObject.FindGameObjectWithTag("Player"); //ok these are probably expensive but i ran into this issue last minute low on time :(
+        boss = GameObject.FindGameObjectWithTag("Boss");
         pos1 = door1.position;
         pos2 = door2.position;
         state = State.Idle;
@@ -55,11 +57,10 @@ public class Door : MonoBehaviour
         if (dist < 0) {
             dist = 0;
             state = State.Idle;
+            door1.position = pos1;
+            door2.position = pos2;
             return;
         }
-
-        Debug.Log("a " + pos1);
-        Debug.Log("b " + pos2);
         Vector3 vect = (Vector2)(pos2 - pos1).normalized; //the vector3 -> vector2 -> vector3 truncates the z value
         door1.position = pos1 - (vect * dist);
         door2.position = pos2 + (vect * dist);

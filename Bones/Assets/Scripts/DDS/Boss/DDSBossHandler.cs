@@ -24,7 +24,11 @@ public class DDSBossHandler : MonoBehaviour
         previousPoint = point;
     }
 
-    
+    private void Start() {
+        bossHandler.MoveTo(point.transform.position);
+    }
+
+
     void Update()
     {
         Movement();
