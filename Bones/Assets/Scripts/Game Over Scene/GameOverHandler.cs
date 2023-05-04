@@ -10,6 +10,8 @@ public class GameOverHandler : MonoBehaviour
     [SerializeField]
     GameObject text;
     [SerializeField]
+    GameObject textShow;
+    [SerializeField]
     GameObject bonesLeft;
     [SerializeField]
     GameObject bonesRight;
@@ -43,6 +45,7 @@ public class GameOverHandler : MonoBehaviour
 
         IEnumerator GameOverRoutine() {
             yield return new WaitForSeconds(4f); //wait 4 seconds
+            textShow.SetActive(true);
             while (!InputManager.GetKey(InputManager.InputName.Button1)) //wait for Z press
                 yield return null;
             SceneManager.LoadScene("Undertale");
