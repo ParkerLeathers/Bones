@@ -8,6 +8,7 @@ public class CelesteBossHandler : MonoBehaviour
     [Header("GameObjects")]
     [SerializeField] private GameObject player;
     [SerializeField] private GameObject cutsceneHandler;
+    [SerializeField] private GameObject audioSource;
 
     [Header("Stats")]
     [SerializeField] private float MAX_DISTANCE;
@@ -15,6 +16,7 @@ public class CelesteBossHandler : MonoBehaviour
     [Header("Components")]
     private BossHandler bossHandler;
     private CutsceneScript cutsceneScript;
+    private AudioScript audioScript;
 
     [Header("Waypoints")]
     [SerializeField] private GameObject[] wayPointObjs;
@@ -26,6 +28,7 @@ public class CelesteBossHandler : MonoBehaviour
     {
         bossHandler = GetComponent<BossHandler>();
         cutsceneScript = cutsceneHandler.GetComponent<CutsceneScript>();
+        audioScript = audioSource.GetComponent<AudioScript>();
         LoadQueue();
     }
 
@@ -55,6 +58,7 @@ public class CelesteBossHandler : MonoBehaviour
     }
 
     public void StartMoving() {
+        audioScript.Play();
         started = true;
     }
 
