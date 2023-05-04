@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DDSBossHandler : MonoBehaviour
 {
@@ -57,8 +58,7 @@ public class DDSBossHandler : MonoBehaviour
     }
 
     private void Death() {
-        //todo IMPLEMENT
-        Debug.Log("big money ukilled him");
+        SceneManager.LoadScene("MainMenu");
     }
 
     private void UpdateHealth() {
