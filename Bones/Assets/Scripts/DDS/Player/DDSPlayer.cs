@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class DDSPlayer : MonoBehaviour
 {
@@ -26,8 +27,7 @@ public class DDSPlayer : MonoBehaviour
     }
 
     private void Death() {
-        //todo IMPLEMENT
-        Debug.Log("big money ukilled him");
+        SceneManager.LoadScene("Death");
     }
 
     private void UpdateHealth() {
