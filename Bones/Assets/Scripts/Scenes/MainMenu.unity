@@ -4963,8 +4963,8 @@ MonoBehaviour:
   resolution: {fileID: 360819031}
   fullscreen: {fileID: 2036479643}
   button1: {fileID: 839544675}
-  button2: {fileID: 839544675}
-  button3: {fileID: 839544675}
+  button2: {fileID: 1599882191}
+  button3: {fileID: 602387354}
 --- !u!4 &1083808914
 Transform:
   m_ObjectHideFlags: 0
