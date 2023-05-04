@@ -119,19 +119,15 @@ public class OptionsMenuHandler : MonoBehaviour
         Screen.SetResolution(resolutions[resolution.value].width, resolutions[resolution.value].height, fullscreen.isOn);
     }
 
-    public void SetInput(InputManager.InputName key) {
-        InputManager.Set(key, (KeyCode) System.Enum.GetValues(typeof(KeyCode)).GetValue(button1.value));
-    }
-
     public void SetInputButton1() {
-        SetInput(InputManager.InputName.Button1);
+        InputManager.Set(InputManager.InputName.Button1, (KeyCode)System.Enum.GetValues(typeof(KeyCode)).GetValue(button1.value));
     }
 
     public void SetInputButton2() {
-        SetInput(InputManager.InputName.Button2);
+        InputManager.Set(InputManager.InputName.Button2, (KeyCode)System.Enum.GetValues(typeof(KeyCode)).GetValue(button2.value));
     }
 
     public void SetInputButton3() {
-        SetInput(InputManager.InputName.Button3);
+        InputManager.Set(InputManager.InputName.Button3, (KeyCode)System.Enum.GetValues(typeof(KeyCode)).GetValue(button3.value));
     }
 }

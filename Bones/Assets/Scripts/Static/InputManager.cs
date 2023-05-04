@@ -18,7 +18,7 @@ public static class InputManager {
 
         map[InputName.Button1] = KeyCode.Z;
         map[InputName.Button2] = KeyCode.X;
-        map[InputName.Button3] = KeyCode.Z;
+        map[InputName.Button3] = KeyCode.C;
 
 
     }
