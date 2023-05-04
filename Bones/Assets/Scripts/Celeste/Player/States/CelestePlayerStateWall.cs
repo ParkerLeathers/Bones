@@ -9,8 +9,8 @@ public abstract class CelestePlayerStateWall : CelestePlayerState {
     protected Rigidbody2D rb;
 
     //constants
-    readonly int JUMP_X_FORCE = 5;
-    readonly int JUMP_Y_FORCE = 5;
+    readonly int JUMP_X_FORCE = 15;
+    readonly int JUMP_Y_FORCE = 7;
 
     //climb state property
     protected bool canClimb = true;
@@ -71,7 +71,7 @@ public abstract class CelestePlayerStateWall : CelestePlayerState {
     private bool Kick() {
         if (stateMachine.player.left ? InputManager.GetKey(InputManager.InputName.Right) : InputManager.GetKey(InputManager.InputName.Left)) {
             rb.velocity = new Vector2(0, 0f);
-            rb.AddForce(new Vector2(stateMachine.player.left ? JUMP_X_FORCE : -JUMP_X_FORCE, JUMP_Y_FORCE), ForceMode2D.Impulse);
+            rb.AddForce(new Vector2(stateMachine.player.left ? JUMP_X_FORCE : -JUMP_X_FORCE, helpless ? 0f : JUMP_Y_FORCE), ForceMode2D.Impulse);
             stateMachine.ChangeState(helpless ? stateMachine.stateHelpless : stateMachine.stateJump);
             return true;
         }

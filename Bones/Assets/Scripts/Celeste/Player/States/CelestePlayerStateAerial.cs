@@ -37,7 +37,7 @@ public abstract class CelestePlayerStateAerial : CelestePlayerState
 
         if (ExitChecks()) return;
 
-        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * X_SPEED, rb.velocity.y);
+        rb.velocity = new Vector2(Input.GetAxisRaw("Horizontal") * X_SPEED, rb.velocity.y); //this actually breaks wall kick but i dont have time to fix :(
 
         stateMachine.player.asc.ChangeAnimationState("Aerial", System.Math.Abs(rb.velocity.y) * ANIMATION_MODIFIER >= MAX_ANIMATION_SPEED ? MAX_ANIMATION_SPEED : System.Math.Abs(rb.velocity.y) * ANIMATION_MODIFIER);
 

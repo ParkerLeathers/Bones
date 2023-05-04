@@ -30,6 +30,9 @@ public class CutsceneScript : MonoBehaviour
     private VoiceScript vs;
     private ChatHandler[] speakersScript;
     private Queue<VoiceLine> lineQueue = new Queue<VoiceLine>();
+
+    public bool done = false;
+
     void Start()
     {
         foreach (VoiceLine i in lines)
@@ -56,9 +59,12 @@ public class CutsceneScript : MonoBehaviour
                 if (line.clip != null)
                     vs.PlaySound(line.clip);
 
+
                 while (InputManager.GetKey(InputManager.InputName.Button1))
                     yield return null;
             }
+            if (lineQueue.Count == 0)
+                done = true;
         }
     }
     void Update()

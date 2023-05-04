@@ -10,13 +10,11 @@ public class BossHandler : MonoBehaviour {
 
     private Vector2 target;
     private float distance;
-    private Rigidbody2D rb;
 
     [HideInInspector] public bool done = false;
     [HideInInspector] public bool paused = false;
     void Awake()
     {
-        rb = GetComponent<Rigidbody2D>();
         target = transform.position;
     }
 

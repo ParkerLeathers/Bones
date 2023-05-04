@@ -6,12 +6,14 @@ public class CelesteBossHandler : MonoBehaviour
 {
     [Header("GameObjects")]
     [SerializeField] private GameObject player;
+    [SerializeField] private GameObject cutsceneHandler;
 
     [Header("Stats")]
     [SerializeField] private float MAX_DISTANCE;
 
     [Header("Components")]
     private BossHandler bossHandler;
+    private CutsceneScript cutsceneScript;
 
     [Header("Waypoints")]
     [SerializeField] private GameObject[] wayPointObjs;
@@ -22,8 +24,8 @@ public class CelesteBossHandler : MonoBehaviour
     void Awake()
     {
         bossHandler = GetComponent<BossHandler>();
+        cutsceneScript = cutsceneHandler.GetComponent<CutsceneScript>();
         LoadQueue();
-        StartMoving();
     }
 
     private void LoadQueue() {
@@ -34,8 +36,11 @@ public class CelesteBossHandler : MonoBehaviour
 
     void Update()
     {
-        if (started)
-            return;
+        if (!started)
+            if (cutsceneScript.done)
+                StartMoving();
+            else
+                return;
 
         if (points.Count == 0)
             LoadQueue();
