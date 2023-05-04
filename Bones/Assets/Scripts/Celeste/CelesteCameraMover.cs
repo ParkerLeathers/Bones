@@ -30,7 +30,5 @@ public class CelesteCameraMover : MonoBehaviour
             cam.transform.position = new Vector3(tempLoc.x * w, tempLoc.y * h, cam.transform.position.z);
             screenLocation = tempLoc;
         }
-
-        Debug.Log(screenLocation);
     }
 }

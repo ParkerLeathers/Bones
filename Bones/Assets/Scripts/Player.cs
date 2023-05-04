@@ -30,8 +30,6 @@ public class Player : MonoBehaviour
 
     private void Update() {
 
-        if (Input.GetKeyDown(KeyCode.J))
-            SceneManager.LoadScene("Celeste");
     }
 
     void FixedUpdate() {

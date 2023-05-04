@@ -59,7 +59,7 @@ public abstract class CelestePlayerStateAerial : CelestePlayerState
 
     private bool Cling() {
         GameObject wall = stateMachine.player.GetWall();
-        if (wall != null && (System.Math.Sign(rb.velocity.x) == System.Math.Sign(wall.transform.position.x - rb.position.x) || System.Math.Sign(Input.GetAxisRaw("Horizontal")) == System.Math.Sign(wall.transform.position.x - rb.position.x))) {
+        if (wall != null && InputManager.GetKey(InputManager.InputName.Button1) && (System.Math.Sign(rb.velocity.x) == System.Math.Sign(wall.transform.position.x - rb.position.x) || System.Math.Sign(Input.GetAxisRaw("Horizontal")) == System.Math.Sign(wall.transform.position.x - rb.position.x))) {
             stateMachine.ChangeState(canDash ? stateMachine.stateCling : stateMachine.stateSlip);
             return true;
         }

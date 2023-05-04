@@ -6,6 +6,8 @@ public class CelestePlayerStateMachine : MonoBehaviour
 {
     public CelestePlayer player;
 
+    private bool started = false;
+
     /*
      * State Machine
     */
@@ -26,7 +28,13 @@ public class CelestePlayerStateMachine : MonoBehaviour
         this.playerState = playerState;
         this.playerState.BeginStateBase();
     }
-    
+
+    public void Begin() {
+        started = true;
+
+        ChangeState(stateIdle);
+    }
+
     void Start()
     {
         stateIdle = new CelestePlayerStateIdle(this);
@@ -37,14 +45,13 @@ public class CelestePlayerStateMachine : MonoBehaviour
         stateCling = new CelestePlayerStateCling(this);
         stateClimb = new CelestePlayerStateClimb(this);
         stateSlip = new CelestePlayerStateSlip(this);
-
-        ChangeState(stateIdle);
-
     }
 
     void FixedUpdate()
     {
+        if (!started)
+            return;
+
         playerState.UpdateStateBase();
-        Debug.Log(playerState);
     }
 }

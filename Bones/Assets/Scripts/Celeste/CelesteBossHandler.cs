@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CelesteBossHandler : MonoBehaviour
 {
@@ -60,5 +61,18 @@ public class CelesteBossHandler : MonoBehaviour
     public void Next() {
         bossHandler.MoveTo(points.Dequeue());
     }
-   
+
+    private void OnTriggerEnter2D(Collider2D other) {
+        if (other == null || other.gameObject == null)
+            return;
+
+        switch (other.tag) {
+            case "Player":
+                SceneManager.LoadScene("DDS");
+                break;
+            default:
+                break;
+        }
+    }
+
 }

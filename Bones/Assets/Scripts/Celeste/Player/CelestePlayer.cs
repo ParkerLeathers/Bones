@@ -4,6 +4,11 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class CelestePlayer : MonoBehaviour {
+
+    [Header("GameObject")]
+    [SerializeField] private GameObject cutsceneHandler;
+    [SerializeField] private GameObject stateMachine;
+
     [Header("Movement")]
     public float speed = 5f;
 
@@ -13,49 +18,36 @@ public class CelestePlayer : MonoBehaviour {
     [HideInInspector] public AnimationStateChanger asc;
     [HideInInspector] public SpriteMaterialSwapper sms;
     [HideInInspector] public SpriteRenderer sr;
+    private CutsceneScript cs;
+    private CelestePlayerStateMachine cpsm;
 
     [HideInInspector]
     public float gravityScale;
     [HideInInspector]
     public bool left;
-    
+
+    private bool started = false;
+
     void Awake() {
         rb = GetComponent<Rigidbody2D>();
         c2 = GetComponent<Collider2D>();
         asc = GetComponent<AnimationStateChanger>();
         sms = GetComponent<SpriteMaterialSwapper>();
         sr = GetComponent<SpriteRenderer>();
+        cs = cutsceneHandler.GetComponent<CutsceneScript>();
+        cpsm = stateMachine.GetComponent<CelestePlayerStateMachine>();
         gravityScale = rb.gravityScale;
         left = false;
     }
 
 
     void Update() {
-
-        /*
-         * Legacy code
-        
-        if ((Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow)) && canJump == true) { //change this to get axis raw vertical
-            Debug.Log("a");
-            rb.AddForce(new Vector2(0, speed), ForceMode2D.Impulse); //change to own speed var, disable double jumps
-            canJump = false;
-        } else if (transform.position.y < -1.456) { // change this condition to when ground is hit
-            canJump = true;
-        }
-
-        if (Input.GetKeyDown(KeyCode.Space) && canDash == true) {
-            rb.AddForce(new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical")) * speed, ForceMode2D.Impulse); //change to own speed var, disable double jumps
-            canDash = false;
-        } else if (transform.position.y < -1.456) { // change this condition to when ground is hit
-            canDash = true;
-        }
-        */
-
-        if (Input.GetKeyDown(KeyCode.J))
-            SceneManager.LoadScene("Undertale");
-        
-
-
+        if (!started && !cs.done) {
+            rb.velocity = new Vector2(0, 0);
+        } else if(!started) {
+            started = true;
+            cpsm.Begin();
+        }           
     }
 
     public GameObject GetGround() {
