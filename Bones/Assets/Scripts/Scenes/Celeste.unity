@@ -2342,7 +2342,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: WASD/arrow keys to move and jump. Space to dash
+  m_Text: Press Button1 to advance text
 --- !u!222 &622190451
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4488,7 +4488,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: WASD/arrow keys to move and jump. Space to dash
+  m_Text: Press Button1 to advance text
 --- !u!222 &1165860157
 CanvasRenderer:
   m_ObjectHideFlags: 0
