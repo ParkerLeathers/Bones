@@ -9,7 +9,8 @@ public class WaveHandler : MonoBehaviour
         Uncrush,
         CrushMono,
         CrushHold,
-        Bombard
+        Bombard,
+        Rocketerate
     }
 
     [Serializable]
@@ -30,13 +31,18 @@ public class WaveHandler : MonoBehaviour
     [SerializeField]
     private GameObject bomberator;
     [SerializeField]
+    private GameObject rocketerator;
+    [SerializeField]
     private GameObject boss;
     [SerializeField]
     private Wave[] waves;
 
     private CrusheratorScript crusheratorScript;
     private BomberatorScript bomberatorScript;
+    private RocketeratorScript rocketeratorScript;
     private BossHandler bossHandler;
+
+    private bool ready = true;
 
     private Queue<Wave> waveQueue = new Queue<Wave>();
     void Start()
@@ -46,18 +52,25 @@ public class WaveHandler : MonoBehaviour
 
         crusheratorScript = crusherator.GetComponent<CrusheratorScript>();
         bomberatorScript = bomberator.GetComponent<BomberatorScript>();
+        rocketeratorScript = rocketerator.GetComponent<RocketeratorScript>();
         bossHandler = boss.GetComponent<BossHandler>();
-
-        StartWaves();
     }
 
-    void StartWaves() {
+    public bool Next() {
+        ready = true;
+        if (waveQueue.Count == 0)
+            return false;
+        return true;
+    }
+
+    public void StartWaves() {
         StartCoroutine(WaveRoutine());
 
         IEnumerator WaveRoutine() {
             while (waveQueue.Count > 0) {
-                while (!Input.GetKeyDown(KeyCode.X)) //todo replace with boss damage
+                while (!ready)
                     yield return null;
+                ready = false;
 
                 Wave wave = waveQueue.Dequeue();
 
@@ -67,10 +80,6 @@ public class WaveHandler : MonoBehaviour
                     yield return new WaitForSeconds(i.seconds);
                     CallAttack(i.attack);
                 }
-                
-
-                while (Input.GetKeyDown(KeyCode.X)) //todo replace with boss damage
-                    yield return null;
             }
         }
     }
@@ -88,6 +97,9 @@ public class WaveHandler : MonoBehaviour
                 break;
             case AttackEnum.Bombard:
                 bomberatorScript.Bombard(2f); //todo replace with something idk
+                break;
+            case AttackEnum.Rocketerate:
+                rocketeratorScript.Rocketerate();
                 break;
         }
     }

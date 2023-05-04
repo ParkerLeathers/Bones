@@ -16,10 +16,6 @@ public class Player : MonoBehaviour
     private GameObject crusherator;
     [SerializeField]
     private GameObject bomberator;
-
-    [Header("Prefabs")]
-    [SerializeField]
-    private GameObject dedPrefab;
     
     [Header("Misc")]
     public int points;
@@ -50,7 +46,6 @@ public class Player : MonoBehaviour
 
         switch (other.tag) {
             case "Projectile": //death
-                Destroy(Instantiate(dedPrefab, new Vector3(0, 2, -3), Quaternion.identity), 15);
                 SceneManager.LoadScene("GameOver");
                 break;
             default:
