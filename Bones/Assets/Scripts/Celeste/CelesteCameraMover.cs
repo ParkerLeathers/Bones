@@ -16,7 +16,6 @@ public class CelesteCameraMover : MonoBehaviour
         cam = UnityEngine.Camera.main;
         h = cam.orthographicSize * 2;
         w = h * cam.aspect;
-        Debug.Log(w);
 
         screenLocation = new Vector2Int((int) ((transform.position.x + w/2) / w), (int) ((transform.position.y + h/2) / h));
     }
