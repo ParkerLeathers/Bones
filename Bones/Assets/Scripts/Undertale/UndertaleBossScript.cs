@@ -8,10 +8,17 @@ public class UndertaleBossScript : MonoBehaviour {
     [Header("GameObjects")]
     [SerializeField] private GameObject waveHandler;
     [SerializeField] private GameObject cutsceneHandler;
+    [SerializeField] private GameObject audioSource;
+    [SerializeField] private GameObject musicAudioSource;
 
     [Header("Components")]
     private WaveHandler waveScript;
     private CutsceneScript cutsceneScript;
+    private AudioScript audioScript;
+    private AudioScript musicAudioScript;
+
+    [Header("AudioClips")]
+    [SerializeField] AudioClip damage;
 
     private bool started = false;
 
@@ -19,11 +26,14 @@ public class UndertaleBossScript : MonoBehaviour {
     {
         waveScript = waveHandler.GetComponent<WaveHandler>();
         cutsceneScript = cutsceneHandler.GetComponent<CutsceneScript>();
+        audioScript = audioSource.GetComponent<AudioScript>();
+        musicAudioScript = musicAudioSource.GetComponent<AudioScript>();
     }
 
     void Update()
     {
         if (!started && cutsceneScript.done) {
+            musicAudioScript.Play();
             waveScript.StartWaves();
             started = true;
         }
@@ -36,6 +46,7 @@ public class UndertaleBossScript : MonoBehaviour {
         if (other.name.Equals("Rocket(Clone)")) {//forgive me but im so low on time
             if (!waveScript.Next())
                 SceneManager.LoadScene("Celeste");
+            audioScript.Play(damage);
             Destroy(other.gameObject);
         }
     }

@@ -27,7 +27,7 @@ public class CutsceneScript : MonoBehaviour
     [SerializeField]
     private GameObject voice;
 
-    private VoiceScript vs;
+    private AudioScript audioScript;
     private ChatHandler[] speakersScript;
     private Queue<VoiceLine> lineQueue = new Queue<VoiceLine>();
 
@@ -40,7 +40,7 @@ public class CutsceneScript : MonoBehaviour
         speakersScript = new ChatHandler[speakersText.Length];
         for (int i = 0; i < speakersText.Length; i++)
             speakersScript[i] = speakersText[i].GetComponent<ChatHandler>();
-        vs = voice.GetComponent<VoiceScript>();
+        audioScript = voice.GetComponent<AudioScript>();
         StartCutscene();
     }
 
@@ -57,7 +57,7 @@ public class CutsceneScript : MonoBehaviour
                 VoiceLine line = lineQueue.Dequeue();
                 speakersScript[(int) line.speaker].StartText(line.text);
                 if (line.clip != null)
-                    vs.PlaySound(line.clip);
+                    audioScript.PlaySound(line.clip);
 
 
                 while (InputManager.GetKey(InputManager.InputName.Button1))

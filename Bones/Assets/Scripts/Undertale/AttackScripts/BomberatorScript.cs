@@ -11,11 +11,15 @@ public class BomberatorScript : MonoBehaviour
     [Header("Prefabs")]
     [SerializeField]
     private GameObject bombPrefab;
-
-
+    [Header("GameObjects")]
+    [SerializeField] private GameObject audioSource;
+    [Header("AudioClips")]
+    [SerializeField] private AudioClip bomberate;
+    [Header("Components")]
+    private AudioScript audioScript;
     void Start()
     {
-        
+        audioScript = audioSource.GetComponent<AudioScript>();
     }
 
     
@@ -25,6 +29,8 @@ public class BomberatorScript : MonoBehaviour
     }
 
     public void Bombard(float seconds) {
+
+        audioScript.Play(bomberate);
 
         StartCoroutine(BombardRoutine());
 

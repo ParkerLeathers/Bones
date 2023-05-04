@@ -726,7 +726,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: test
+  m_Text: Press Button1 to advance text
 --- !u!222 &410659348
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1912,7 +1912,7 @@ Canvas:
   serializedVersion: 3
   m_RenderMode: 1
   m_Camera: {fileID: 519420031}
-  m_PlaneDistance: 1
+  m_PlaneDistance: 11.28
   m_PixelPerfect: 0
   m_ReceivesEvents: 1
   m_OverrideSorting: 0
@@ -2095,8 +2095,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1264840782}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.95, y: 3.941, z: -0.02632143}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -6.95, y: 3.941, z: -0.026321432}
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2233,6 +2233,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waveHandler: {fileID: 434322330}
   cutsceneHandler: {fileID: 1930881992}
+  audioSource: {fileID: 1657133256}
+  musicAudioSource: {fileID: 1980472207}
+  damage: {fileID: 8300000, guid: a8e435b2a994c4f4cbb48cbb2e2dfd3e, type: 3}
 --- !u!1 &1281868757
 GameObject:
   m_ObjectHideFlags: 0
@@ -2459,6 +2462,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   inverseSpeed: 0.5
   bombPrefab: {fileID: 1229730402}
+  audioSource: {fileID: 1657133256}
+  bomberate: {fileID: 8300000, guid: cba7571684778fe4cbfe0b9a0ea09a5a, type: 3}
 --- !u!4 &1545491475
 Transform:
   m_ObjectHideFlags: 0
@@ -2951,7 +2956,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: test
+  m_Text: Press Button1 to advance text
 --- !u!222 &1715292462
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -3341,20 +3346,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lines:
-  - clip: {fileID: 8300000, guid: f2f473787af6f194cb0456261cedc6d7, type: 3}
-    text: Testing
-    speaker: 0
-  - clip: {fileID: 8300000, guid: 606ea398b8f24f84c9c068468ea4685e, type: 3}
-    text: According to all known laws of aviation
+  - clip: {fileID: 8300000, guid: 9b91e6fff0df51a4b9e90ae1b3110960, type: 3}
+    text: Ah if it isn't my archnemesis BONES
     speaker: 1
-  - clip: {fileID: 8300000, guid: 03e39cfe0bfc54f41b9e312f904a9abf, type: 3}
-    text: Can we pretend that airplanes in the night sky
+  - clip: {fileID: 8300000, guid: 630b1366855a5c8459b098d989726315, type: 3}
+    text: Welcome to BONES, BONES
+    speaker: 1
+  - clip: {fileID: 8300000, guid: a19d8e61741ce3045b8ab9243113f39e, type: 3}
+    text: Howdy
     speaker: 0
-  - clip: {fileID: 8300000, guid: 80adda5e47b34614b90e1a4db3f9b5be, type: 3}
-    text: they dont just alternate
+  - clip: {fileID: 8300000, guid: 3efe57f1be2cdfa4e82605912d692002, type: 3}
+    text: I bet you'd like to know how to play BONES, wouldn't you BONES?
+    speaker: 1
+  - clip: {fileID: 8300000, guid: 29c59b07da9df1540a1651fddbb496a6, type: 3}
+    text: Not really seems too complicated
     speaker: 0
-  - clip: {fileID: 8300000, guid: 12584c231e401ae4f854755fdf56d751, type: 3}
-    text: no way bro u trained a model ?!?
+  - clip: {fileID: 8300000, guid: 6af7065ae6054dc46b953953bb1fc3e6, type: 3}
+    text: Well its not that simple, BONES
+    speaker: 1
+  - clip: {fileID: 8300000, guid: 6c3b2441bdd88334eb678cb4df19905b, type: 3}
+    text: You see, I've prepared THREE trials
+    speaker: 1
+  - clip: {fileID: 8300000, guid: 675c06dddb9832f4098fa37b2b2cc24d, type: 3}
+    text: Each of them enti- wait what
+    speaker: 1
+  - clip: {fileID: 8300000, guid: ab5223b7da9f4b9448d1f6fa355fd13d, type: 3}
+    text: You- you don't wanna learn how to play?
+    speaker: 1
+  - clip: {fileID: 8300000, guid: 757ca3a9876c36e4fbbbece42fe2d13f, type: 3}
+    text: I've already got enough bounty points I'll go ahead and skip the tutorial
+    speaker: 0
+  - clip: {fileID: 8300000, guid: 9b6dffcab44cfe346b38fc0f6ff27ebe, type: 3}
+    text: Fine - uhhh - rocket!!!!
     speaker: 1
   speakersText:
   - {fileID: 1715292461}
@@ -3626,8 +3649,8 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 6712568266922879142, guid: 529d458fb84d3eb44908d5bc78b3b4c6, type: 2}
-  m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_audioClip: {fileID: 8300000, guid: ecb12d91e607e7d4e9085c2f2d4f29ce, type: 3}
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 1
