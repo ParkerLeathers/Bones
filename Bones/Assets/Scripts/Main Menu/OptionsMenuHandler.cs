@@ -14,6 +14,9 @@ public class OptionsMenuHandler : MonoBehaviour
     [SerializeField] private AudioMixer mixer;
     [SerializeField] private Dropdown resolution;
     [SerializeField] private Toggle fullscreen;
+    [SerializeField] private Dropdown button1;
+    [SerializeField] private Dropdown button2;
+    [SerializeField] private Dropdown button3;
 
 
     private Resolution[] resolutions;
@@ -41,20 +44,45 @@ public class OptionsMenuHandler : MonoBehaviour
 
         resolutions = Screen.resolutions;
         bool resolutionHit = false;
-        int i = 0;
+        int c = 0;
         foreach (Resolution r in resolutions) {
             if (Mathf.Abs((float) r.width / r.height - (16f / 9)) < 0.001) {//sorry its just easier for me to only allow 16:9 :(
-                i++;
+                c++;
                 resolution.options.Add(new Dropdown.OptionData(r.width + "x" + r.height));
 
                 if(r.width == Screen.currentResolution.width && r.height == Screen.currentResolution.height) {
-                    resolution.value = i;
+                    resolution.value = c;
                     resolutionHit = true;
                 }
             }
         }
         if (!resolutionHit)
             resolution.value = resolutions.Length-1;
+
+        /*
+         * inputs
+        */
+
+
+        string[] keyNames = System.Enum.GetNames(typeof(KeyCode));
+        for (int i = 0; i < keyNames.Length; i++) {
+            button1.options.Add(new Dropdown.OptionData(keyNames[i]));
+            button2.options.Add(new Dropdown.OptionData(keyNames[i]));
+            button3.options.Add(new Dropdown.OptionData(keyNames[i]));
+
+            switch (button1.options[i].text) {
+                case "Z":
+                    button1.value = i;
+                    break;
+                case "X":
+                    button2.value = i;
+                    break;
+                case "C":
+                    button3.value = i;
+                    break;
+            }
+                
+        }
     }
 
     public void Open() {
@@ -89,5 +117,21 @@ public class OptionsMenuHandler : MonoBehaviour
 
     public void SetResolution() {
         Screen.SetResolution(resolutions[resolution.value].width, resolutions[resolution.value].height, fullscreen.isOn);
+    }
+
+    public void SetInput(InputManager.InputName key) {
+        InputManager.Set(key, (KeyCode) System.Enum.GetValues(typeof(KeyCode)).GetValue(button1.value));
+    }
+
+    public void SetInputButton1() {
+        SetInput(InputManager.InputName.Button1);
+    }
+
+    public void SetInputButton2() {
+        SetInput(InputManager.InputName.Button2);
+    }
+
+    public void SetInputButton3() {
+        SetInput(InputManager.InputName.Button3);
     }
 }
